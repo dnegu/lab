@@ -1,30 +1,27 @@
-#
-# [file:#lines]
-# desc
-#
+En el archivo zookd.c en la linea 68,
+las variables implicadas son 'reqpath' la cual se encuentra dentro de 'fd', este error
+esta en la funcion 'url_decode' la cual llama a la variable y no se le restringe un dominio.
+funcion -> url_decode(reqpath, sp1);
+archivos que usa -> exploit-4a.py, expliot-3.py
 
-[zookd.c:68]
-We can overflow the 'reqpath' variable into 'fd' and the instruction
-pointer.
+En el archivo http.c en la linea 159,
+al igual que en el anterior no se tiene una consideracionmediante la informacion dada, por
+lo tanto puede provocar un desbordamiento, la variable 'value' es pasada como parametro a la
+funcion 'url_decode' y no se tiene una debida restriccion.
+funcion ->  url_decode(value, sp);
+archivos que usa -> exploit-4b.py
 
-    url_decode(reqpath, sp1);
-exploit-4a, expliot-3 use this bug
+En el archivo http.c en la linea 165,
+en este ejemplo se tiene el mismo error con la variable 'envvar' y con la funcion implicada 
+'sprintf'.
+funcion ->  sprintf(envvar, "HTTP_%s", buf);
 
-[http.c:159]
-We can overflow the 'value' variable into 'i', followed by 'fd' and
-the instruction pointer. 
+En el archivo http.c en la linea 94,
+en este ejemplo se tiene el mismo error con la variable 'envvar' y con la funcion implicada 
+'sprintf'.
+funcion ->  envp += sprintf(envp, "REQUEST_URI=%s", reqpath) + 1;
 
-    url_decode(value, sp);
-exploit-4b use this bug.
-
-[http.c:165]
-We can overflow the 'envvar' variable into 'value'. 
-    sprintf(envvar, "HTTP_%s", buf);
-
-[http.c:94]
-We can overflow the 'envp' variable.
-    envp += sprintf(envp, "REQUEST_URI=%s", reqpath) + 1;
-
-[http.c:255]
-We can overflow the 'pn' variable.
-    strcat(pn, name);
+En el archivo http.c en la linea 255,
+en este ejemplo se tiene el mismo error con la variable 'envvar' y con la funcion implicada 
+'sprintf'.
+funcion ->  strcat(pn, name);
