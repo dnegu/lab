@@ -65,9 +65,6 @@ p exit
 ./clean-env.sh ./zookld zook-nxstack.conf
 
 Ejercicio 4:
-
-
-Ejercicio  5:
 1.- Si intentamos ingresar como parametro a HTTP el valor normal sin el salto de linea,
 cuando se llama a la funcion 'read()' la cual se encuentra situada en la funcion
 http_read_line la cual se encuentra en el archivo 'http.c'no se establece la conexion 
@@ -76,3 +73,6 @@ por lo tanto la pagina cae.
 2.- No se haya una autentificacion de los usuarios que estan transfiriendo usuarios entre 
 ellos en zoobars, por lo tanto el atacante puede ingresar de forma implicita y cambiar la
 imformacion la cual se quiere enviar o del mismo.
+
+Ejercicio  5:
+...
