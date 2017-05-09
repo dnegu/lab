@@ -1,27 +1,27 @@
-En el archivo zookd.c en la linea 68,
+[zookd.c:68]
 las variables implicadas son 'reqpath' la cual se encuentra dentro de 'fd', este error
 esta en la funcion 'url_decode' la cual llama a la variable y no se le restringe un dominio.
 funcion -> url_decode(reqpath, sp1);
 archivos que usa -> exploit-4a.py, expliot-3.py
 
-En el archivo http.c en la linea 159,
+[http.c:159]
 al igual que en el anterior no se tiene una consideracionmediante la informacion dada, por
 lo tanto puede provocar un desbordamiento, la variable 'value' es pasada como parametro a la
 funcion 'url_decode' y no se tiene una debida restriccion.
 funcion ->  url_decode(value, sp);
 archivos que usa -> exploit-4b.py
 
-En el archivo http.c en la linea 165,
+[http.c:165]
 en este ejemplo se tiene el mismo error con la variable 'envvar' y con la funcion implicada 
 'sprintf'.
 funcion ->  sprintf(envvar, "HTTP_%s", buf);
 
-En el archivo http.c en la linea 94,
+[http.c:94]
 en este ejemplo se tiene el mismo error con la variable 'envvar' y con la funcion implicada 
 'sprintf'.
 funcion ->  envp += sprintf(envp, "REQUEST_URI=%s", reqpath) + 1;
 
-En el archivo http.c en la linea 255,
+[http.c:255]
 en este ejemplo se tiene el mismo error con la variable 'envvar' y con la funcion implicada 
 'sprintf'.
 funcion ->  strcat(pn, name);
